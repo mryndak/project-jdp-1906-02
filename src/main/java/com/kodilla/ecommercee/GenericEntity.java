@@ -25,7 +25,6 @@ public class GenericEntity {
     }
 
     public GenericEntity(String value) {
-
         this.value = value;
     }
 }
