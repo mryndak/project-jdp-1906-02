@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "groups")
-public class Group {
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
