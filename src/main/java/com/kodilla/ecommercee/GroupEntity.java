@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "groups")
+@Table(name = "group_entity")
 public class GroupEntity {
 
     @Id
@@ -22,11 +23,11 @@ public class GroupEntity {
     private String name;
 
     @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "group",
+            targetEntity = ProductEntity.class,
+            mappedBy = "groupEntity",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Product> products = new ArrayList<>();
+    private List<ProductEntity> productEntities = new ArrayList<>();
 
 }
