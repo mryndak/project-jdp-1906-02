@@ -29,10 +29,10 @@ public class Order {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private Long userId;
+    private User userId;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "CART_ID")
+    @JoinColumn(name = "cart_ID")
     private Cart cartId;
 
     private List<Item> products = new ArrayList<>();
