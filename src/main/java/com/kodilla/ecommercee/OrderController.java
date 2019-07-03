@@ -16,7 +16,10 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getAllOrders")
     public List<OrderDto> getAllOrders() {
-        return new ArrayList<>();
+        List<OrderDto> orderList = new ArrayList<>();
+        orderList.add(new OrderDto(1L, 1L, 1L,  new ArrayList<>(), LocalDateTime.of(2019,6,25,16,49), CREATED, new BigDecimal(4)));
+        orderList.add(new OrderDto(2L, 2L, 2L,  new ArrayList<>(), LocalDateTime.of(2019,6,26,17,49), CREATED, new BigDecimal(17)));
+        return orderList;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createOrder", consumes = APPLICATION_JSON_VALUE)
