@@ -16,7 +16,7 @@ public class OrderDto {
     private Long id;
     private Long userId;
     private Long cartId;
-    private List<ProductDto> products;
+    private List<Item> products;
     private LocalDateTime orderDate;
     private OrderStatus orderStatus;
     private BigDecimal totalOrder;
