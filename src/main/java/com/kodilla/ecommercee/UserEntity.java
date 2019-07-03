@@ -23,16 +23,16 @@ public class UserEntity {
 
     private int userKey;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-
-    @OneToMany (
-            targetEntity = Order.class,
-            mappedBy = "user_id",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Order> orderList;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "cart_id")
+//    private Cart cart;
+//
+//    @OneToMany (
+//            targetEntity = Order.class,
+//            mappedBy = "user_id",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+//    private List<Order> orderList;
 
 }

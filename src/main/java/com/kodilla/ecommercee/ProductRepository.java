@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Override
-    Product save(Product product);
+    ProductEntity save(ProductEntity product);
 
     @Override
     boolean existsById(Long id);
@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     void deleteById(Long aLong);
 
     @Override
-    Product getOne(Long aLong);
+    ProductEntity getOne(Long aLong);
 
     Optional<Product> getById(Long id);
 
