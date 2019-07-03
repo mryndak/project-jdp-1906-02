@@ -10,8 +10,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "users")
-public class User {
+@Entity(name = "user_entity")
+public class UserEntity {
 
     @Id
     @GeneratedValue
@@ -29,7 +29,7 @@ public class User {
 
     @OneToMany (
             targetEntity = Order.class,
-            mappedBy = "user",
+            mappedBy = "user_id",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

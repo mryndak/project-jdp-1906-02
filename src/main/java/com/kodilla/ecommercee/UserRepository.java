@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Override
-    User save(User user);
+    UserEntity save(UserEntity userEntity);
 }
