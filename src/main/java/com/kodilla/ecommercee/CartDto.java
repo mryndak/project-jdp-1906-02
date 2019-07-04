@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -12,5 +12,4 @@ import java.util.Map;
 public class CartDto {
     private Long id;
     private Long userId;
-    private Map<String, Integer> productList;
-}
+    private List<Item> itemList;

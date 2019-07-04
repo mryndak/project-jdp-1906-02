@@ -2,8 +2,10 @@ package com.kodilla.ecommercee;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/ecommercee")
@@ -14,11 +16,11 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getCartsContent")
-    public Map<String, Integer> getCart(@RequestParam Long cartId) {
-        return new HashMap<String, Integer>();
+    public List<Item> getCart(@RequestParam Long cartId) {
+        return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "addPToCart")
+    @RequestMapping(method = RequestMethod.PUT, value = "addToCart")
     public void addProduct(@RequestParam Long cartId, @RequestBody String productName, Integer quantity) {
     }
 
@@ -26,11 +28,9 @@ public class CartController {
     public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody String productName) {
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createOrder")
-    public TemporaryOrder createOrder(@RequestParam Long cartId) {
-        Map<String, Integer> productList = new HashMap<>();
-        productList.put("product1", 2);
-        productList.put("product2",5);
-        return new TemporaryOrder(44256L,122L,productList);
+    @RequestMapping(method = RequestMethod.POST, value = "createNewOrder")
+    public OrderDto createOrder(@RequestParam Long cartId) {
+        List<Item> itemList = new ArrayList<>();
+        return new OrderDto(44256L, 122L, 7404L, itemList, LocalDateTime.now(), OrderStatus.CREATED, new BigDecimal(1208));
     }
 }
