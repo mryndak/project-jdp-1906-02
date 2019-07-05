@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "group")
-public class Group {
+@Table(name = "groups")
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
-
     private Long id;
 
     private String name;

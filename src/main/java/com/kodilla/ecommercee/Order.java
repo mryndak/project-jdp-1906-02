@@ -40,4 +40,3 @@ public class Order {
     private OrderStatus orderStatus;
     private BigDecimal totalOrder;
 }
-
