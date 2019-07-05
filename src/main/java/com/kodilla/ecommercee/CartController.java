@@ -12,12 +12,18 @@ import java.util.List;
 public class CartController {
 
     @RequestMapping(method = RequestMethod.POST, value = "createCart")
-    public void createCart(@RequestParam Long userId) {
+    public CartDto createCart(@RequestParam Long userId) {
+        return new CartDto(1L, userId, new ArrayList<>());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getCartsContent")
     public List<Item> getCart(@RequestParam Long cartId) {
-        return new ArrayList<>();
+        List<Item> itemList = new ArrayList<>();
+        itemList.add(new Item(1L, 2, 20, new Product(3L, "product7", "blue T-shirt", new BigDecimal(10),
+                new GroupEntity(5L, "Clothes", new ArrayList<>()))));
+        itemList.add(new Item(4L, 5, 125, new Product(7L, "product22", "red skirt", new BigDecimal(25),
+                new GroupEntity(5L, "Clothes", new ArrayList<>()))));
+        return itemList;
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "addToCart")
