@@ -24,7 +24,7 @@ public class Order {
     private Long id;
 
     @OneToMany(
-            targetEntity = User.class,
+            targetEntity = UserEntity.class,
             mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
@@ -32,8 +32,8 @@ public class Order {
     private User userId;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cart_ID")
-    private Cart cartId;
+    @JoinColumn(name = "cart_id")
+    private CartEntity cartId;
 
     private List<Item> products = new ArrayList<>();
     private LocalDateTime orderDate;
