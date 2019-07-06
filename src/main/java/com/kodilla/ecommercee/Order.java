@@ -33,7 +33,7 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
-    private Cart cartId;
+    private Cart cart;
 
     private List<Item> products = new ArrayList<>();
     private LocalDateTime orderDate;
