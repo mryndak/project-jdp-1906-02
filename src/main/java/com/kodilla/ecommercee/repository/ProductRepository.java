@@ -1,6 +1,6 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.repository;
 
-import com.kodilla.ecommercee.Product;
+import com.kodilla.ecommercee.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Override
-    ProductEntity save(ProductEntity product);
+    ProductEntity save(ProductEntity productEntity);
 
     @Override
     boolean existsById(Long id);
@@ -23,7 +23,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Override
     ProductEntity getOne(Long aLong);
 
-    Optional<Product> getById(Long id);
+    Optional<ProductEntity> getById(Long id);
 
 
 }

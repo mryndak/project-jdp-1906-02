@@ -25,5 +25,5 @@ public class Item {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_ID")
-    private Product product;
+    private ProductEntity productEntity;
 }
