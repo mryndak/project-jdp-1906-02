@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "items")
-public class Item {
+@Table(name = "item_entity")
+public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,6 @@ public class Item {
     private double total;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_ID")
+    @JoinColumn(name = "product_id")
     private ProductEntity productEntity;
 }

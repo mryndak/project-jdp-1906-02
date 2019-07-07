@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,27 +15,28 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "order")
-public class Order {
+@Table(name = "order_entity")
+public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
 
-    @OneToMany(
-            targetEntity = UserEntity.class,
-            mappedBy = "order",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private UserEntity user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private CartEntity cartEntity;
 
-    private List<Item> products = new ArrayList<>();
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ItemEntity> products = new ArrayList<>();
+
     private LocalDateTime orderDate;
     private OrderStatus orderStatus;
     private BigDecimal totalOrder;

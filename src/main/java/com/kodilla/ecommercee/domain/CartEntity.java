@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,14 +20,13 @@ public class CartEntity {
     @NotNull
     private Long id;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "user_id")
-//    private User user;
-//
-//    @OneToMany(
-//            targetEntity = Item.class,
-//            mappedBy = "cart_id",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY)
-//    private List<Item> itemList;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ItemEntity> itemList;
 }

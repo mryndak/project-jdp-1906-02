@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.dto;
 
 public class UserDto {
     private Long id;

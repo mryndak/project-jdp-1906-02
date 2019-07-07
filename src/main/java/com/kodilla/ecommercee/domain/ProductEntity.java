@@ -1,5 +1,6 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.domain.GroupEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,11 +8,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity(name = "products")
+@Entity(name = "product_entity")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +25,7 @@ public class Product {
     private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "groupId")
-    private GroupEntity group;
+    @JoinColumn(name = "group_id")
+    private GroupEntity groupEntity;
 
 }

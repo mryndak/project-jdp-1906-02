@@ -1,5 +1,6 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.dto.OrderDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kodilla.ecommercee.OrderStatus.*;
+import static com.kodilla.ecommercee.domain.OrderStatus.*;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
