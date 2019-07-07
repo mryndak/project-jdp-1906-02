@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "order_entity")
 public class OrderEntity {
 
     @Id
@@ -25,11 +24,11 @@ public class OrderEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
-    private CartEntity cartEntity;
+    private CartEntity cart;
 
     @OneToMany(
             cascade = CascadeType.ALL,

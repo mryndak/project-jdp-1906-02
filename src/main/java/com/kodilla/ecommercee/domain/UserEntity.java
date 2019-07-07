@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "user_entity")
+@Entity
 public class UserEntity {
 
     @Id
@@ -25,14 +25,14 @@ public class UserEntity {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
-    private CartEntity cartEntity;
+    private CartEntity cart;
 
     @OneToMany (
             targetEntity = OrderEntity.class,
-            mappedBy = "userEntity",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<OrderEntity> orderEntityList;
+    private List<OrderEntity> orders;
 
 }

@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.GroupEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity(name = "product_entity")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -26,6 +25,6 @@ public class ProductEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
-    private GroupEntity groupEntity;
+    private GroupEntity group;
 
 }

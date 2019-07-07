@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "item_entity")
 public class ItemEntity {
 
     @Id
@@ -25,5 +24,5 @@ public class ItemEntity {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    private ProductEntity productEntity;
+    private ProductEntity product;
 }

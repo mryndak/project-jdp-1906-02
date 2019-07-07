@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "cart_entity")
 public class CartEntity {
 
     @Id
@@ -22,11 +21,11 @@ public class CartEntity {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<ItemEntity> itemList;
+    private List<ItemEntity> items;
 }
