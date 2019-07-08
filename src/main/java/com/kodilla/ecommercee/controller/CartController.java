@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/ecommercee")
+@RequestMapping("/v1/ecommercee/users")
 public class CartController {
 
-    @RequestMapping(method = RequestMethod.POST, value = "createCart")
-    public CartDto createCart(@RequestParam Long userId) {
+    @RequestMapping(method = RequestMethod.POST, value = "{userId}/carts")
+    public CartDto createCart(@PathVariable Long userId) {
         return new CartDto(1L, userId, new ArrayList<>());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getCartsContent")
-    public List<ItemEntity> getCart(@RequestParam Long cartId) {
+    @RequestMapping(method = RequestMethod.GET, value = "{userId}/carts")
+    public List<ItemEntity> getCart(@PathVariable Long userId) {
         List<ItemEntity> itemEntityList = new ArrayList<>();
         itemEntityList.add(new ItemEntity(1L, 2, 20, new ProductEntity(3L, "product7", "blue T-shirt", new BigDecimal(10),
                 new GroupEntity(5L, "Clothes", new ArrayList<>()))));
@@ -32,16 +32,16 @@ public class CartController {
         return itemEntityList;
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "addToCart")
-    public void addProduct(@RequestParam Long cartId, @RequestBody String productName, Integer quantity) {
+    @RequestMapping(method = RequestMethod.PUT, value = "{userId}/carts")
+    public void addProduct(@PathVariable Long userId, @RequestBody String productName, Integer quantity) {
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteFromCart")
-    public void deleteProductFromCart(@RequestParam Long cartId, @RequestBody String productName) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "{userId}/carts/{itemId}")
+    public void deleteProductFromCart(@PathVariable Long userId, @PathVariable Long itemId) {
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createNewOrder")
-    public OrderDto createOrder(@RequestParam Long cartId) {
+    @RequestMapping(method = RequestMethod.POST, value = "{userId}/orders")
+    public OrderDto createOrder(@PathVariable Long userId) {
         List<ItemEntity> itemEntityList = new ArrayList<>();
         return new OrderDto(44256L, 122L, 7404L, itemEntityList, LocalDateTime.now(), OrderStatus.CREATED, new BigDecimal(1208));
     }
