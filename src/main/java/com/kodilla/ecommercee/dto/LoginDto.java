@@ -1,13 +1,13 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroupDto {
-    private Long id;
-    private String name;
+@Getter
+public class LoginDto {
+    private boolean loggedIn;
+    private int sessionId;
 }

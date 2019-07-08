@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,24 +6,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
-@Table(name = "items")
-public class Item {
+public class CartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
 
-    private int quantity;
-
-    private double total;
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_ID")
-    private ProductEntity productEntity;
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ItemEntity> items;
 }

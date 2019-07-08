@@ -1,5 +1,11 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.GroupEntity;
+import com.kodilla.ecommercee.domain.ItemEntity;
+import com.kodilla.ecommercee.domain.OrderStatus;
+import com.kodilla.ecommercee.domain.ProductEntity;
+import com.kodilla.ecommercee.dto.CartDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -17,13 +23,13 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getCartsContent")
-    public List<Item> getCart(@RequestParam Long cartId) {
-        List<Item> itemList = new ArrayList<>();
-        itemList.add(new Item(1L, 2, 20, new ProductEntity(3L, "product7", "blue T-shirt", new BigDecimal(10),
+    public List<ItemEntity> getCart(@RequestParam Long cartId) {
+        List<ItemEntity> itemEntityList = new ArrayList<>();
+        itemEntityList.add(new ItemEntity(1L, 2, 20, new ProductEntity(3L, "product7", "blue T-shirt", new BigDecimal(10),
                 new GroupEntity(5L, "Clothes", new ArrayList<>()))));
-        itemList.add(new Item(4L, 5, 125, new ProductEntity(7L, "product22", "red skirt", new BigDecimal(25),
+        itemEntityList.add(new ItemEntity(4L, 5, 125, new ProductEntity(7L, "product22", "red skirt", new BigDecimal(25),
                 new GroupEntity(5L, "Clothes", new ArrayList<>()))));
-        return itemList;
+        return itemEntityList;
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "addToCart")
@@ -36,7 +42,7 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.POST, value = "createNewOrder")
     public OrderDto createOrder(@RequestParam Long cartId) {
-        List<Item> itemList = new ArrayList<>();
-        return new OrderDto(44256L, 122L, 7404L, itemList, LocalDateTime.now(), OrderStatus.CREATED, new BigDecimal(1208));
+        List<ItemEntity> itemEntityList = new ArrayList<>();
+        return new OrderDto(44256L, 122L, 7404L, itemEntityList, LocalDateTime.now(), OrderStatus.CREATED, new BigDecimal(1208));
     }
 }
