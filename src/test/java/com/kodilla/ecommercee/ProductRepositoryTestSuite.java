@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Transactional
 @RunWith(SpringRunner.class)
@@ -91,7 +91,7 @@ public class ProductRepositoryTestSuite {
         ProductEntity productEntity1 = new ProductEntity(1L, "name", "test description", new BigDecimal("10.0"), group);
         productRepository.save(productEntity1);
         Long id = productRepository.findAll().get(0).getId();
-        ProductEntity productEntity2 = new ProductEntity(id ,"second name", "test description", new BigDecimal("30.0"), group);
+        ProductEntity productEntity2 = new ProductEntity(id, "second name", "test description", new BigDecimal("30.0"), group);
 
         //When
         productRepository.save(productEntity2);
@@ -125,5 +125,4 @@ public class ProductRepositoryTestSuite {
         //CleanUp
         productRepository.deleteById(id2);
     }
-
 }

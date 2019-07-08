@@ -18,26 +18,26 @@ public class GroupService {
     @Autowired
     GroupMapper groupMapper;
 
-    public List<GroupDto> getAllGroups(){
+    public List<GroupDto> getAllGroups() {
         List<GroupEntity> groups = groupRepository.findAll();
         return groupMapper.mapToGroupDtoList(groups);
     }
 
-    public GroupDto getGroupById(Long groupId){
+    public GroupDto getGroupById(Long groupId) {
         GroupEntity group = groupRepository.getById(groupId).get();
         return groupMapper.mapToGroupDto(group);
     }
 
-    public GroupDto saveGroup(GroupDto groupDto){
+    public GroupDto saveGroup(GroupDto groupDto) {
         GroupEntity group = groupMapper.mapToGroupEntity(groupDto);
         return groupMapper.mapToGroupDto(groupRepository.save(group));
     }
 
-    public void deleteGroup(Long groupId){
+    public void deleteGroup(Long groupId) {
         groupRepository.deleteById(groupId);
     }
 
-    public boolean isExist(Long groupId){
+    public boolean isExist(Long groupId) {
         return groupRepository.existsById(groupId);
     }
 }

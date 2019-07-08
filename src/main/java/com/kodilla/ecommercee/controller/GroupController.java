@@ -22,12 +22,13 @@ public class GroupController {
     private Validator validator;
 
     @RequestMapping(method = RequestMethod.GET, value = "groups")
-    public List<GroupDto> getGroups(){
+    public List<GroupDto> getGroups() {
         return groupService.getAllGroups();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "groups/{groupId}")
-    public GroupDto getGroup (@PathVariable Long groupId){
+    public GroupDto getGroup (@PathVariable Long groupId) {
+
         validator.validateGroupById(groupId);
         return groupService.getGroupById(groupId);
     }

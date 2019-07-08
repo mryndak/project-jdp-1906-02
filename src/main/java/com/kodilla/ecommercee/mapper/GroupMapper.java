@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 @Component
 public class GroupMapper {
 
-    public GroupDto mapToGroupDto(GroupEntity groupEntity){
+    public GroupDto mapToGroupDto(GroupEntity groupEntity) {
         return new GroupDto(
                 groupEntity.getId(),
                 groupEntity.getName()
         );
     }
 
-    public GroupEntity mapToGroupEntity(GroupDto groupDto){
+    public GroupEntity mapToGroupEntity(GroupDto groupDto) {
         return new GroupEntity(
                 groupDto.getId(),
                 groupDto.getName(),
@@ -26,9 +26,9 @@ public class GroupMapper {
         );
     }
 
-    public List<GroupDto> mapToGroupDtoList(List<GroupEntity>groups){
+    public List<GroupDto> mapToGroupDtoList(List<GroupEntity> groups) {
         return groups.stream()
-                .map(group ->mapToGroupDto(group))
+                .map(group -> mapToGroupDto(group))
                 .collect(Collectors.toList());
     }
 }

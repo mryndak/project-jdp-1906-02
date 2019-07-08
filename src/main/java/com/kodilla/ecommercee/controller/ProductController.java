@@ -1,14 +1,12 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.dto.ProductDto;
-import com.kodilla.ecommercee.exception.WrongIdException;
 import com.kodilla.ecommercee.service.ProductService;
 import com.kodilla.ecommercee.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -28,8 +26,10 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+
     @RequestMapping(method = RequestMethod.GET, value = "products/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) {
+
         validator.validateProductId(productId);
         return productService.getProductById(productId);
     }
@@ -37,6 +37,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.POST, value = "products", consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
         productService.saveProduct(productDto);
+
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "products", consumes = APPLICATION_JSON_VALUE)
@@ -50,5 +51,4 @@ public class ProductController {
         validator.validateProductId(productId);
         productService.deleteProduct(productId);
     }
-
 }
