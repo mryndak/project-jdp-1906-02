@@ -16,11 +16,23 @@ public class ProductMapper {
     private GroupRepository groupRepository;
 
     public ProductDto mapToProductDto(ProductEntity productEntity) {
-        return new ProductDto(productEntity.getId(), productEntity.getName(), productEntity.getDescription(), productEntity.getPrice(), productEntity.getGroup().getId());
+        return new ProductDto(
+                productEntity.getId(),
+                productEntity.getName(),
+                productEntity.getDescription(),
+                productEntity.getPrice(),
+                productEntity.getGroup().getId()
+        );
     }
 
     public ProductEntity mapToProductEntity(ProductDto productDto) {
-        return new ProductEntity(productDto.getId(), productDto.getName(), productDto.getDescription(), productDto.getPrice(), groupRepository.getOne(productDto.getGroupId()));
+        return new ProductEntity(
+                productDto.getId(),
+                productDto.getName(),
+                productDto.getDescription(),
+                productDto.getPrice(),
+                groupRepository.getOne(productDto.getGroupId())
+        );
     }
 
     public List<ProductDto> mapToProductDtoList(List<ProductEntity> products) {

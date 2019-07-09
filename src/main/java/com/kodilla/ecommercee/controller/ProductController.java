@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.controller;
 import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.exception.WrongIdException;
 import com.kodilla.ecommercee.service.ProductService;
+import com.kodilla.ecommercee.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private Validator validator;
+
     @RequestMapping(method = RequestMethod.GET, value = "products")
     public List<ProductDto> getProducts() {
         return productService.getAllProducts();
@@ -26,7 +30,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "products/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) {
-        validateProductId(productId);
+        validator.validateProductId(productId);
         return productService.getProductById(productId);
     }
 
@@ -37,18 +41,14 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "products", consumes = APPLICATION_JSON_VALUE)
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
+        validator.validateProductId(productDto.getId());
         return productService.saveProduct(productDto);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "products/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
-        validateProductId(productId);
+        validator.validateProductId(productId);
         productService.deleteProduct(productId);
     }
 
-    private void validateProductId(Long productId) {
-        if(!productService.isExist(productId)) {
-            throw new WrongIdException("Wrong product id");
-        }
-    }
 }
