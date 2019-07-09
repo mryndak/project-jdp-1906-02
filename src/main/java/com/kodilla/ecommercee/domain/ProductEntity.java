@@ -19,6 +19,7 @@ public class ProductEntity {
 
     private String name;
 
+    @Column(length = 1000000)
     private String description;
 
     private BigDecimal price;
