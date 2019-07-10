@@ -28,4 +28,5 @@ public class CartEntity {
             orphanRemoval = true
     )
     private List<ItemEntity> items;
+
 }

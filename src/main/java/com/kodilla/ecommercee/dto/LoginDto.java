@@ -8,6 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class LoginDto {
+    private Long id;
     private boolean loggedIn;
-    private int sessionId;
+    private String sessionId;
+    private Long userId;
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
 }
