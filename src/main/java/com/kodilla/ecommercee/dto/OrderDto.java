@@ -1,7 +1,9 @@
 package com.kodilla.ecommercee.dto;
 
+import com.kodilla.ecommercee.domain.CartEntity;
 import com.kodilla.ecommercee.domain.ItemEntity;
 import com.kodilla.ecommercee.domain.OrderStatus;
+import com.kodilla.ecommercee.domain.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
