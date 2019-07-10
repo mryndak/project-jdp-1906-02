@@ -1,12 +1,12 @@
 package com.kodilla.ecommercee.controller;
-
-
 import com.kodilla.ecommercee.dto.GroupDto;
+
 import com.kodilla.ecommercee.service.GroupService;
 import com.kodilla.ecommercee.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -35,6 +35,7 @@ public class GroupController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "groups/{groupId}")
     public void deleteGroup(@PathVariable Long groupId){
+
         validator.validateGroupById(groupId);
         groupService.deleteGroup(groupId);
     }
@@ -50,4 +51,5 @@ public class GroupController {
     public void createGroup(@RequestBody GroupDto groupdDto){
         groupService.saveGroup(groupdDto);
     }
+
 }

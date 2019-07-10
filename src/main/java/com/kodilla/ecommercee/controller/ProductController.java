@@ -5,8 +5,6 @@ import com.kodilla.ecommercee.service.ProductService;
 import com.kodilla.ecommercee.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -34,10 +32,11 @@ public class ProductController {
         return productService.getProductById(productId);
     }
 
+
     @RequestMapping(method = RequestMethod.POST, value = "products", consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
-        productService.saveProduct(productDto);
 
+        productService.saveProduct(productDto);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "products", consumes = APPLICATION_JSON_VALUE)
@@ -48,6 +47,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "products/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
+
         validator.validateProductId(productId);
         productService.deleteProduct(productId);
     }
