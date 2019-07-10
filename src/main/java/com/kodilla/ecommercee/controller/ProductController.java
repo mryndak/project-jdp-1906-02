@@ -1,6 +1,10 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.dto.ProductDto;
+import com.kodilla.ecommercee.exception.WrongIdException;
+import com.kodilla.ecommercee.service.ProductService;
+import com.kodilla.ecommercee.validator.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -13,31 +17,38 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/v1/ecommercee")
 public class ProductController {
 
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private Validator validator;
+
     @RequestMapping(method = RequestMethod.GET, value = "products")
     public List<ProductDto> getProducts() {
-        List<ProductDto> productDtos = new ArrayList<>();
-        productDtos.add(new ProductDto(1L, "first name", "test description", new BigDecimal("10.0"), 1L));
-        productDtos.add(new ProductDto(2L, "second name", "test description", new BigDecimal("30.0"), 3L));
-        return productDtos;
+        return productService.getAllProducts();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "products/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) {
-        return new ProductDto(1L, "name", "test description", new BigDecimal("10.0"), 1L);
+        validator.validateProductId(productId);
+        return productService.getProductById(productId);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "products", consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
-
+        productService.saveProduct(productDto);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "products", consumes = APPLICATION_JSON_VALUE)
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return new ProductDto(1L, "edited name", "test description", new BigDecimal("20.0"), 1L);
+        validator.validateProductId(productDto.getId());
+        return productService.saveProduct(productDto);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "products/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
-
+        validator.validateProductId(productId);
+        productService.deleteProduct(productId);
     }
+
 }
