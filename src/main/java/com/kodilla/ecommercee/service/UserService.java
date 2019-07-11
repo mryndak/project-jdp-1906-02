@@ -18,8 +18,11 @@ import java.util.TimerTask;
 @Service
 public class UserService {
 
-    private Random generator = new Random();
-    private Timer timer = new Timer();
+    @Autowired
+    private Random generator;
+
+    @Autowired
+    private Timer timer;
 
     @Autowired
     private UserMapper userMapper;

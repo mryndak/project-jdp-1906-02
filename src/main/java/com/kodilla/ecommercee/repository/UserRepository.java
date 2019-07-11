@@ -11,9 +11,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    @Override
-    UserEntity save(UserEntity userEntity);
-
     boolean existsById(Long id);
 
     Optional<UserEntity> findById(Long id);

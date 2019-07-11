@@ -23,7 +23,7 @@ public class LoginMapper {
 
     public LoginDto mapToLoginDto(LoginEntity loginEntity) {
         return new LoginDto(
-                loginEntity.getLoginId(),
+                loginEntity.getId(),
                 loginEntity.isLoggedIn(),
                 loginEntity.getSessionId(),
                 loginEntity.getUser().getId()

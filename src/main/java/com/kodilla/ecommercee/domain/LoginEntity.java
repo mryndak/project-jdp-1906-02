@@ -14,7 +14,7 @@ public class LoginEntity {
 
     @Id
     @GeneratedValue
-    private Long loginId;
+    private Long id;
 
     private String sessionId;
 
