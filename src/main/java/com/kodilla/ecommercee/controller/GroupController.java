@@ -1,40 +1,55 @@
 package com.kodilla.ecommercee.controller;
-
-
 import com.kodilla.ecommercee.dto.GroupDto;
+
+import com.kodilla.ecommercee.service.GroupService;
+import com.kodilla.ecommercee.validator.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
-@RequestMapping("/v1/ecommercee")
+@RestController
+@RequestMapping("/v1/ecommercee/groups")
 public class GroupController {
 
+    @Autowired
+    private GroupService groupService;
+
+    @Autowired
+    private Validator validator;
+
     @RequestMapping(method = RequestMethod.GET, value = "groups")
-    public List<GroupDto> getGroups(){
-        List<GroupDto> groupDtos = new ArrayList<>();
-        groupDtos.add(new GroupDto(1L,"Kurtki"));
-        groupDtos.add(new GroupDto(2L,"Płaszcze"));
-        return groupDtos;
+    public List<GroupDto> getGroups() {
+        return groupService.getAllGroups();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "groups/{groupId}")
-    public GroupDto getGroup (@PathVariable Long groupId){
-        return new GroupDto(1L,"Kurtki");
+    public GroupDto getGroup (@PathVariable Long groupId) {
+
+        validator.validateGroupById(groupId);
+        return groupService.getGroupById(groupId);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "groups/{groupId}")
     public void deleteGroup(@PathVariable Long groupId){
+
+        validator.validateGroupById(groupId);
+        groupService.deleteGroup(groupId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "groups")
     public GroupDto updateGroup(@RequestBody GroupDto groupDto){
-        return new GroupDto(1L, "Jednak plecaki");
+        validator.validateGroupById(groupDto.getId());
+        return groupService.saveGroup(groupDto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "groups")
+
+    @RequestMapping(method = RequestMethod.POST, value = "groups", consumes = APPLICATION_JSON_VALUE)
     public void createGroup(@RequestBody GroupDto groupdDto){
+        groupService.saveGroup(groupdDto);
     }
+
 }
