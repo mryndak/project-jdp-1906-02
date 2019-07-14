@@ -21,7 +21,7 @@ public class UserEntity {
 
     private boolean state;
 
-    private int userKey;
+    private String userKey;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
@@ -35,4 +35,18 @@ public class UserEntity {
     )
     private List<OrderEntity> orders;
 
+    @OneToMany (
+            targetEntity = LoginEntity.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<LoginEntity> logins;
+
+    public UserEntity(Long id, String username, boolean state, String userKey) {
+        this.id = id;
+        this.username = username;
+        this.state = state;
+        this.userKey = userKey;
+    }
 }
