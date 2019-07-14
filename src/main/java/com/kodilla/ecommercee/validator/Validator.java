@@ -47,6 +47,8 @@ public class Validator {
     public void validateUserActive(UserDto userDto) {
         if(!userDto.isStatus()) {
             throw new UserBlockedException("The user is locked");
+        }
+    }
 
     public void validateGroupById(Long groupId){
         if(!groupService.isExist(groupId)){
