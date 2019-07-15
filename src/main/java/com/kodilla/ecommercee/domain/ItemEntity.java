@@ -3,14 +3,17 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
+@Setter
 public class ItemEntity {
 
     @Id
@@ -20,7 +23,7 @@ public class ItemEntity {
 
     private int quantity;
 
-    private double total;
+    private BigDecimal total;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
