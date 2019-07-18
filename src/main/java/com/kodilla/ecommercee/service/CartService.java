@@ -8,6 +8,7 @@ import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.mapper.ItemMapper;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.ItemRepository;
+import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,9 @@ public class CartService {
     @Autowired
     private ItemMapper itemMapper;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     public CartDto saveCart(CartDto cartDto) {
         CartEntity cart = cartRepository.save(cartMapper.mapToCartEntity(cartDto));
         return cartMapper.mapToCartDto(cart);
@@ -42,6 +46,13 @@ public class CartService {
     public CartDto getCartById(Long cartId) {
         CartEntity cart = cartRepository.findById(cartId).get();
         return cartMapper.mapToCartDto(cart);
+    }
+
+    public void addItem(ItemDto itemDto, CartDto cartDto) {
+        BigDecimal total = productRepository.getOne(itemDto.getProductId()).getPrice().multiply(new BigDecimal(itemDto.getQuantity()));
+        itemDto.setTotal(total);
+        cartDto.setTotalCost(cartDto.getTotalCost().add(total));
+        cartDto.getItemDtoList().add(itemDto);
     }
 
     public void deleteFromCart(Long cartId, Long itemId) {
